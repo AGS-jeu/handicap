@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cap ou pas Cap d’inclure le handicap ?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f0f8ff;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Syne', sans-serif;
+            color: #0077cc;
+        }
+        .question {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+        button {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #result {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cap ou pas Cap d’inclure le handicap ?</h1>
+    <p>Répondez aux 10 questions pour tester vos réflexes sur le handicap au travail.</p>
+    <form id="quizForm">
+<div class="question"><p><strong>Question 1:</strong> Une personne en situation de handicap ne peut pas être performante.</p><div class="options"><label><input type="radio" name="q0" value="0"> Vrai</label><label><input type="radio" name="q0" value="1"> Faux</label></div></div><div class="question"><p><strong>Question 2:</strong> Quel est le bon réflexe face à un handicap invisible ?</p><div class="options"><label><input type="radio" name="q1" value="0"> Ignorer</label><label><input type="radio" name="q1" value="1"> Demander avec bienveillance</label><label><input type="radio" name="q1" value="2"> Faire des suppositions</label></div></div><div class="question"><p><strong>Question 3:</strong> Associez l’aménagement : Télétravail</p><div class="options"><label><input type="radio" name="q2" value="0"> Handicap moteur</label><label><input type="radio" name="q2" value="1"> Handicap visuel</label><label><input type="radio" name="q2" value="2"> Handicap auditif</label></div></div><div class="question"><p><strong>Question 4:</strong> Comment réagir à une remarque déplacée ?</p><div class="options"><label><input type="radio" name="q3" value="0"> Rire avec les autres</label><label><input type="radio" name="q3" value="1"> Ignorer</label><label><input type="radio" name="q3" value="2"> Recadrer avec bienveillance</label></div></div><div class="question"><p><strong>Question 5:</strong> Le handicap est toujours visible.</p><div class="options"><label><input type="radio" name="q4" value="0"> Vrai</label><label><input type="radio" name="q4" value="1"> Faux</label></div></div><div class="question"><p><strong>Question 6:</strong> Quel outil peut faciliter l’inclusion ?</p><div class="options"><label><input type="radio" name="q5" value="0"> Formation</label><label><input type="radio" name="q5" value="1"> Isolement</label><label><input type="radio" name="q5" value="2"> Surveillance</label></div></div><div class="question"><p><strong>Question 7:</strong> Le handicap concerne uniquement les personnes en fauteuil.</p><div class="options"><label><input type="radio" name="q6" value="0"> Vrai</label><label><input type="radio" name="q6" value="1"> Faux</label></div></div><div class="question"><p><strong>Question 8:</strong> Quel comportement favorise l’inclusion ?</p><div class="options"><label><input type="radio" name="q7" value="0"> Écoute</label><label><input type="radio" name="q7" value="1"> Jugement</label><label><input type="radio" name="q7" value="2"> Indifférence</label></div></div><div class="question"><p><strong>Question 9:</strong> Un salarié handicapé doit être traité différemment.</p><div class="options"><label><input type="radio" name="q8" value="0"> Vrai</label><label><input type="radio" name="q8" value="1"> Faux</label></div></div><div class="question"><p><strong>Question 10:</strong> Quel est le rôle du manager ?</p><div class="options"><label><input type="radio" name="q9" value="0"> Exclure</label><label><input type="radio" name="q9" value="1"> Adapter</label><label><input type="radio" name="q9" value="2"> Ignorer</label></div></div>
+    <button type="button" onclick="calculateScore()">Valider mes réponses</button>
+    <div id="result"></div>
+    </form>
+    <script>
+        function calculateScore() {
+            const correctAnswers = [1,1,0,2,1,0,1,0,1,1];
+            let score = 0;
+            for (let i = 0; i < correctAnswers.length; i++) {
+                const radios = document.getElementsByName('q'+i);
+                for (const radio of radios) {
+                    if (radio.checked && parseInt(radio.value) === correctAnswers[i]) {
+                        score++;
+                    }
+                }
+            }
+            let message = '';
+            if (score >= 8) {
+                message = 'Bravo ! Vous êtes un acteur de l’inclusion.';
+            } else if (score >= 5) {
+                message = 'Vous êtes sur la bonne voie.';
+            } else {
+                message = 'C’est le moment d’en apprendre plus !';
+            }
+            document.getElementById('result').innerText = `Votre score : ${score}/10\n${message}`;
+        }
+    </script>
+</body>
+</html>
